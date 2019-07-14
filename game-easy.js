@@ -44,6 +44,15 @@ window.onload = function () {
      */
     function resetScoreAndTime() {
         // TODO: 写游戏的初始化设置
+         tl_time = parseInt(tl.value);//停留时间
+                    jg_time = parseInt(jg.value);//间隔时间
+                    sc_time = parseInt(sc.value);//游戏时长
+
+                    //设置第一次开始游戏
+                    isOneStart = true;
+
+                    //记录游戏开始时间
+                    start_Time = new Date();
     }
 
     /**
@@ -64,7 +73,7 @@ window.onload = function () {
      */
     function randomTime(min, max) {
         // TODO: 写生成随机数的逻辑，
-        ranK = Math.floor(Math.random() * 9);
+        ranK = Math.floor* (max - min+1)) + max;
         return 0;
     }
 
@@ -76,6 +85,9 @@ window.onload = function () {
      */
     function randomHole(holes) {
         // TODO: 写地鼠随机选择钻出地洞的逻辑，如果与上一个是相同地洞，则重新选择一个地洞.
+        jg_id = setTimeout("mouse_show()",jg_time*1000);
+                //地鼠停留时间
+                tl_id = setTimeout("mouse_hide("+i+")",tl_time*1000);
         return null;
     }
 
@@ -87,6 +99,18 @@ window.onload = function () {
      */
     function comeOutAndStop(hole, time) {
         // TODO: 写地鼠出洞并停留相应时间，如果游戏时间未结束(timeUp)，继续出洞(peep).
+                clearTimeout(tl_id);
+                clearTimeout(jg_id);
+                clearTimeout(djs_id);
+                clearTimeout(play_id);
+                if(!isOneStart){
+                    clearTimeout(jxDJS_id);
+                }
+                isStart = false;
+                djs_span.innerHTML = 0;
+
+                zt_div.style.display = "none";
+                qingchang();
     }
 
     /**
@@ -94,6 +118,19 @@ window.onload = function () {
      */
     moles.forEach(mole => mole.addEventListener('click', function (e) {
         // TODO: 在这里写用户点击地鼠发生的事.
+         var name = imgs[i].src.substr(imgs[i].src.length-5,1);
+
+                if(name == 1){
+                    imgs[i].src = "img/00.jpg";
+
+                    //计分
+                    ld++;
+                    df--;
+                    if(df<=0){
+                        df = 0;
+                    }
+                    df_span.innerHTML = "打中"+dz+"只，漏掉"+ld+"只，得分"+df;
+                }
     }));
 
 };
