@@ -35,6 +35,7 @@ window.onload = function () {
 
         setTimeout(() => {
             // TODO: 写当游戏时间结束后要发生的事
+            $('#dazhong').empty();
         }, gameTime)
     }
 
@@ -63,6 +64,7 @@ window.onload = function () {
      */
     function randomTime(min, max) {
         // TODO: 写生成随机数的逻辑，
+        ranK = Math.floor(Math.random() * 9);
         return 0;
     }
 
